@@ -1,4 +1,5 @@
 import 'package:e_commerce/base/model/product_model.dart';
+import 'package:e_commerce/modules/cart/controller/cart_controller.dart';
 import 'package:e_commerce/modules/dashboard/controller/dashboard_controller.dart';
 import 'package:e_commerce/modules/dashboard/model/resource_model.dart';
 import 'package:flutter/material.dart';
@@ -45,30 +46,33 @@ class _DashboardScreenState extends State<DashboardScreen> {
 class HomeHeader extends StatelessWidget {
   HomeHeader({Key? key}) : super(key: key);
   final DashboardController dashboardController = Get.find();
+  final CartController cartController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(child: SearchField(controller: dashboardController)),
-          const SizedBox(width: 16),
-          IconBtnWithCounter(
-            svgSrc: ResourceModel.cartIcon,
-            press: () {
-              Get.toNamed('/cart');
-
-            },
-          ),
-          const SizedBox(width: 8),
-          IconBtnWithCounter(
-            svgSrc: ResourceModel.bellIcon,
-            numOfitem: 3,
-            press: () {},
-          ),
-        ],
+    return Obx( () =>
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(child: SearchField(controller: dashboardController)),
+            const SizedBox(width: 16),
+            IconBtnWithCounter(
+              numOfitem: cartController.cart.length ,
+              svgSrc: ResourceModel.cartIcon,
+              press: () {
+                Get.toNamed('/cart');
+              },
+            ),
+            const SizedBox(width: 8),
+            IconBtnWithCounter(
+              svgSrc: ResourceModel.bellIcon,
+              numOfitem: 0,
+              press: () {},
+            ),
+          ],
+        ),
       ),
     );
   }
