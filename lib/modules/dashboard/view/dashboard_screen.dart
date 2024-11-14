@@ -57,7 +57,10 @@ class HomeHeader extends StatelessWidget {
           const SizedBox(width: 16),
           IconBtnWithCounter(
             svgSrc: ResourceModel.cartIcon,
-            press: () {},
+            press: () {
+              Get.toNamed('/cart');
+
+            },
           ),
           const SizedBox(width: 8),
           IconBtnWithCounter(

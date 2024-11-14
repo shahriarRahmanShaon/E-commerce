@@ -1,8 +1,11 @@
+import 'package:e_commerce/modules/cart/cart_screen.dart';
 import 'package:e_commerce/modules/dashboard/controller/dashboard_controller.dart';
 import 'package:e_commerce/modules/dashboard/view/dashboard_screen.dart';
 import 'package:e_commerce/modules/detail/view/product_details.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'modules/cart/controller/cart_controller.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,6 +14,7 @@ void main() {
 class MyApp extends StatelessWidget {
   MyApp({super.key});
   final DashboardController homeCtrl = Get.put(DashboardController());
+  final CartController cartCtrl = Get.put(CartController());
 
   @override
   Widget build(BuildContext context) {
@@ -30,4 +34,5 @@ class MyApp extends StatelessWidget {
 final List<GetPage> _routes = [
   GetPage(name: '/home', page: () => DashboardScreen()),
   GetPage(name: '/details', page: () => ProductDetailsScreen()),
+  GetPage(name: '/cart', page: () => CartScreen()),
 ];

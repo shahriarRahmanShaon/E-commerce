@@ -1,4 +1,5 @@
 import 'package:e_commerce/base/model/product_model.dart';
+import 'package:e_commerce/modules/cart/controller/cart_controller.dart';
 import 'package:e_commerce/modules/dashboard/model/resource_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -7,6 +8,7 @@ import 'package:get/get.dart';
 class ProductDetailsScreen extends StatelessWidget {
   ProductDetailsScreen({super.key});
   final ProductModel product = Get.arguments;
+  final CartController cartController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +51,9 @@ class ProductDetailsScreen extends StatelessWidget {
                 ),
                 child: Row(
                   children: [
-                    const Text(
-                      "4.7",
-                      style: TextStyle(
+                     Text(
+                       product.rating.rate.toString(),
+                      style: const TextStyle(
                         fontSize: 14,
                         color: Colors.black,
                         fontWeight: FontWeight.w600,
@@ -97,7 +99,18 @@ class ProductDetailsScreen extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(16)),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                cartController.addToCart(product);
+                cartController.numOfItemsAtCart();
+
+                Get.snackbar(
+                  'Added To Cart',
+                  "Product added to cart successfully",
+                  colorText: Colors.white,
+                  backgroundColor: const Color(0xFFFF7643),
+                  icon: const Icon(Icons.add_alert),
+                );
+              },
               child: const Text("Add To Cart"),
             ),
           ),
