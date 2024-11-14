@@ -3,7 +3,6 @@ import 'package:e_commerce/modules/dashboard/model/resource_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   ProductDetailsScreen({super.key});
@@ -78,14 +77,6 @@ class ProductDetailsScreen extends StatelessWidget {
                   product: product,
                   pressOnSeeMore: () {},
                 ),
-                // TopRoundedContainer(
-                //   color: const Color(0xFFF6F7F9),
-                //   child: Column(
-                //     children: [
-                //       ColorDots(product: product),
-                //     ],
-                //   ),
-                // ),
               ],
             ),
           ),
@@ -169,24 +160,6 @@ class _ProductImagesState extends State<ProductImages> {
             child: Image.network(widget.product.image),
           ),
         ),
-        // SizedBox(height: 20),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ...List.generate(
-              widget.product.image.length,
-                  (index) => SmallProductImage(
-                isSelected: index == selectedImage,
-                press: () {
-                  setState(() {
-                    selectedImage = index;
-                  });
-                },
-                image: widget.product.image,
-              ),
-            ),
-          ],
-        )
       ],
     );
   }

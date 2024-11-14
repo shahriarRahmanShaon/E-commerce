@@ -176,7 +176,8 @@ class RecentlyAddedProducts extends StatelessWidget {
                 return ProductCard(
                   product: dashboardController.recentProductList[index],
                   onPress: () {
-                    print(index);
+                    Get.toNamed('/details', arguments: dashboardController.recentProductList[index]);
+
                   },
                 );
               },
