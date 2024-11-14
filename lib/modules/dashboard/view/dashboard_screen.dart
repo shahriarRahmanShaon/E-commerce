@@ -131,7 +131,9 @@ class PopularProducts extends StatelessWidget {
               itemBuilder: (context, index) {
                 return ProductCard(
                   product: dashboardController.popularProductList[index],
-                  onPress: () {},
+                  onPress: () {
+                    Get.toNamed('/details', arguments: dashboardController.popularProductList[index]);
+                  },
                 );
               },
             );

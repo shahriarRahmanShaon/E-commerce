@@ -1,19 +1,21 @@
 import 'package:e_commerce/modules/dashboard/controller/dashboard_controller.dart';
 import 'package:e_commerce/modules/dashboard/view/dashboard_screen.dart';
+import 'package:e_commerce/modules/detail/view/product_details.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 void main() {
-  runApp( MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-   MyApp({super.key});
+  MyApp({super.key});
   final DashboardController homeCtrl = Get.put(DashboardController());
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
+      getPages: _routes,
       title: 'E Commerce',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -25,3 +27,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
+final List<GetPage> _routes = [
+  GetPage(name: '/home', page: () => DashboardScreen()),
+  GetPage(name: '/details', page: () => ProductDetailsScreen()),
+];
